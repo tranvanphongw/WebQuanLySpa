@@ -9,7 +9,11 @@ $url = filter_var($url, FILTER_SANITIZE_URL);
 $url = explode('/', $url);
 
 // Mặc định: controller = HomeController, action = index
-$controllerName = !empty($url[0]) ? ucfirst($url[0]) . 'Controller' : 'HomeController';
+// Sửa lại dòng này:
+$controllerName = !empty($url[0])
+    ? str_replace('-', '', ucwords($url[0], '-')) . 'Controller'
+    : 'HomeController';
+
 $action = $url[1] ?? 'index';
 $params = array_slice($url, 2);
 
