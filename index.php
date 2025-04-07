@@ -2,25 +2,40 @@
 session_start();
 require_once 'app/helpers/SessionHelper.php';
 
+// Lấy đường dẫn từ ?url=... hoặc từ mod_rewrite
 $url = $_GET['url'] ?? '';
 $url = rtrim($url, '/');
 $url = filter_var($url, FILTER_SANITIZE_URL);
 $url = explode('/', $url);
 
-// Nếu URL không có controller, mặc định sử dụng HomeController
-$controllerName = isset($url[0]) && $url[0] != '' ? ucfirst($url[0]) . 'Controller' : 'HomeController';
-$action = isset($url[1]) && $url[1] != '' ? $url[1] : 'index';
+// Mặc định: controller = HomeController, action = index
+$controllerName = !empty($url[0]) ? ucfirst($url[0]) . 'Controller' : 'HomeController';
+$action = $url[1] ?? 'index';
+$params = array_slice($url, 2);
 
-if (!file_exists('app/controllers/' . $controllerName . '.php')) {
-    die('Controller not found');
+// Kiểm tra file controller
+$controllerPath = 'app/controllers/' . $controllerName . '.php';
+
+if (!file_exists($controllerPath)) {
+    http_response_code(404);
+    die("❌ Controller <strong>$controllerName</strong> not found in <code>$controllerPath</code>.");
 }
 
-require_once 'app/controllers/' . $controllerName . '.php';
+require_once $controllerPath;
+
+// Kiểm tra class controller
+if (!class_exists($controllerName)) {
+    http_response_code(500);
+    die("❌ Controller class <strong>$controllerName</strong> not declared.");
+}
 
 $controller = new $controllerName();
 
+// Kiểm tra action
 if (!method_exists($controller, $action)) {
-    die('Action not found');
+    http_response_code(404);
+    die("❌ Action <strong>$action</strong> not found in controller <strong>$controllerName</strong>.");
 }
 
-call_user_func_array([$controller, $action], array_slice($url, 2));
+// Gọi hàm tương ứng
+call_user_func_array([$controller, $action], $params);

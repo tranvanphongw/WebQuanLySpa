@@ -1,8 +1,11 @@
 RewriteEngine On
+RewriteBase /WebQuanLySpa/
 
-# Loại trừ thư mục uploads khỏi việc rewrite
-RewriteCond %{REQUEST_URI} !^/public/uploads/ [NC]
+# Loại trừ thư mục uploads và api
+RewriteCond %{REQUEST_URI} !^/WebQuanLySpa/public/uploads/ [NC]
+RewriteCond %{REQUEST_URI} !^/WebQuanLySpa/api/ [NC]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+
 RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]

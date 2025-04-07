@@ -1,34 +1,175 @@
+/* Banner Section */
+
+/* Banner Section */
 .banner {
-    text-align: center;
-    margin-bottom: 20px;
+    width: 100%; /* Chiếm toàn bộ chiều rộng của màn hình */
+    overflow: hidden; /* Ẩn các phần ảnh bị tràn ra ngoài */
 }
 
 .banner-img {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 10px;
+    width: 100%; /* Chiếm toàn bộ chiều rộng của phần tử */
+    height: auto; /* Tự động điều chỉnh chiều cao để giữ tỷ lệ ảnh */
+    object-fit: cover; /* Đảm bảo ảnh bao phủ không gian mà không bị bóp méo */
 }
 
+
+
+/* Services Section */
 .services {
     text-align: center;
+    margin: 30px 0; /* Thêm một chút margin để tạo không gian giữa các phần */
 }
 
+/* Service List Layout */
 .service-list {
     display: flex;
     justify-content: center;
     gap: 20px;
     flex-wrap: wrap;
+    margin-bottom: 20px; /* Tạo khoảng cách dưới giữa các item */
 }
 
+/* Service Item Layout */
 .service-item {
-    width: 30%;
+    width: 100%;
+    max-width: 300px; /* Giới hạn chiều rộng tối đa của mỗi item */
     text-align: center;
+    margin: 10px 0;
 }
 
 .service-item img {
     width: 100%;
+    height: auto; /* Thay vì cố định chiều cao, cho phép hình ảnh tự động điều chỉnh */
+    max-height: 200px;
+    object-fit: cover; /* Đảm bảo hình ảnh không bị bóp méo */
+    border-radius: 10px;
+    background-color: #e0e0e0; /* Thêm màu nền khi không có hình ảnh */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .service-item {
+        width: 100%; /* Khi trên màn hình nhỏ, mỗi item chiếm full chiều rộng */
+    }
+
+    .banner-img {
+        max-height: 300px; /* Thu nhỏ banner trên màn hình di động */
+    }
+}
+
+@media (max-width: 480px) {
+    .service-list {
+        flex-direction: column; /* Dọc trên màn hình nhỏ hơn */
+        gap: 15px;
+    }
+
+    .service-item {
+        width: 80%; /* Giảm chiều rộng của các service item */
+    }
+}
+
+.navbar-nav .nav-link {
+    font-weight: bold;  /* Thêm thuộc tính đậm cho các liên kết trong navbar */
+}
+
+/* Dịch vụ */
+.card {
+    border-radius: 15px;
+}
+
+.card img {
+    border-radius: 15px;
     height: 200px;
     object-fit: cover;
-    border-radius: 10px;
 }
+
+.card-body {
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #222324;
+}
+
+.btn-primary {
+    background-color: #ff6600;
+    border-color: #ff6600;
+}
+
+.btn-primary:hover {
+    background-color: #e65c00;
+    border-color: #e65c00;
+}
+
+.badge {
+    background-color: transparent !important; /* Bỏ màu nền */
+    color: #000 !important; /* Màu chữ có thể thay đổi tùy thích */
+}
+
+.badge.bg-info {
+    font-size: 1rem; /* Tăng kích thước chữ */
+    font-weight: bold; /* In đậm chữ */
+    background-color: transparent !important; /* Bỏ màu nền */
+    color: #000 !important; /* Màu chữ có thể thay đổi tùy thích */
+}
+
+footer {
+    background-color: #0c4176;
+    color: #333;
+}
+
+footer h5 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+footer h6 {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+footer p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+footer .btn {
+    margin: 0 10px;
+    font-size: 1rem;
+}
+
+footer .row {
+    margin-bottom: 30px;
+}
+
+footer .col-md-3 {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+footer .btn-outline-primary {
+    border-color: #007bff;
+    color: #007bff;
+}
+
+footer .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+footer .btn-outline-danger {
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+footer .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
