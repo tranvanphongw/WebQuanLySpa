@@ -46,7 +46,7 @@
                     <a class="nav-link" href="/WebQuanLySpa/co-so">Cơ sở</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/WebQuanLySpa/dat-lich">Đặt lịch</a>
+                    <a class="nav-link" href="/WebQuanLySpa/datlich">Đặt lịch</a>
                 </li>
             </ul>
 
