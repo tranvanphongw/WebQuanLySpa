@@ -65,6 +65,15 @@ if ($url[0] == 'dichvu' && isset($url[1])) {
 }
 
 
+if ($_SERVER['REQUEST_URI'] === '/WebQuanLySpa/datlich') {
+    $controller = new DatLichController();
+    $controller->index();  // Hiển thị giao diện đặt lịch
+} elseif ($_SERVER['REQUEST_URI'] === '/WebQuanLySpa/datlich/store' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+    $controller = new DatLichController();
+    $controller->store();  // Xử lý form đặt lịch
+}
+
+
 
 // Gọi hàm tương ứng với action
 call_user_func_array([$controller, $action], $params);

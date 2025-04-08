@@ -26,6 +26,24 @@
                 required
             >
         </div>
+        <div class="form-group">
+            <label for="address">Địa chỉ</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="address" 
+                name="address"
+            >
+        </div>
+        <div class="form-group">
+            <label for="phone">Số điện thoại</label>
+            <input 
+                type="text" 
+                class="form-control" 
+                id="phone" 
+                name="phone"
+            >
+        </div>
 
         <button type="submit" class="btn btn-primary">Cập nhật</button>
     </form>
@@ -37,13 +55,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const alertBox = document.getElementById("alert-box");
 
     if (!token) {
-        alertBox.className = "alert alert-danger";
-        alertBox.innerText = "Bạn chưa đăng nhập.";
-        alertBox.style.display = "block";
+        showError("Bạn chưa đăng nhập.");
         return;
     }
 
-    // Load dữ liệu ban đầu từ API get-profile
+    // Gửi yêu cầu GET để lấy thông tin hồ sơ
     fetch("http://localhost/WebQuanLySpa/api/khachhang/get-profile.php", {
         headers: { Authorization: "Bearer " + token }
     })
@@ -53,22 +69,23 @@ document.addEventListener("DOMContentLoaded", function () {
             // Điền dữ liệu vào form
             document.getElementById("name").value = res.data.TEN || '';
             document.getElementById("email").value = res.data.EMAIL || '';
+            document.getElementById("address").value = res.data.DCHI || '';
+            document.getElementById("phone").value = res.data.DTHOAI || '';
         } else {
             showError("Không thể tải hồ sơ: " + res.message);
         }
     })
     .catch(() => showError("Lỗi khi tải hồ sơ."));
 
-    // Gửi cập nhật lên API update-profile
+    // Xử lý form gửi cập nhật thông tin
     document.getElementById("update-profile-form").addEventListener("submit", function (e) {
         e.preventDefault();
 
         const data = {
             TEN: document.getElementById("name").value,
             EMAIL: document.getElementById("email").value,
-            DCHI: "",  // Nếu có thông tin khác như địa chỉ, bạn có thể thêm vào đây
-            DTHOAI: "",
-            MATKHAU: ""  // Nếu bạn có trường mật khẩu, bạn có thể thêm ở đây
+            DCHI: document.getElementById("address").value,
+            DTHOAI: document.getElementById("phone").value
         };
 
         fetch("http://localhost/WebQuanLySpa/api/khachhang/update-profile.php", {
@@ -102,6 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
 </script>
+
 
 <?php require_once 'app/views/shares/footer.php'; ?>

@@ -8,6 +8,8 @@
             <p><strong>ID Khách hàng:</strong> <span id="makh"></span></p>
             <p><strong>Tên:</strong> <span id="ten"></span></p>
             <p><strong>Email:</strong> <span id="email"></span></p>
+            <p><strong>Địa chỉ:</strong> <span id="dchi"></span></p> <!-- Hiển thị Địa chỉ -->
+            <p><strong>Số điện thoại:</strong> <span id="dthoai"></span></p> <!-- Hiển thị Số điện thoại -->
 
             <a href="/WebQuanLySpa/khachhang/editProfile" class="btn btn-primary">Chỉnh sửa hồ sơ</a>
         </div>
@@ -33,10 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
     .then(res => res.json())
     .then(res => {
         if (res.status === "success") {
-            const { MAKH, TEN, EMAIL } = res.data;
+            const { MAKH, TEN, EMAIL, DCHI, DTHOAI } = res.data;
             document.getElementById("makh").innerText = MAKH;
             document.getElementById("ten").innerText = TEN;
             document.getElementById("email").innerText = EMAIL;
+            document.getElementById("dchi").innerText = DCHI; // Hiển thị Địa chỉ
+            document.getElementById("dthoai").innerText = DTHOAI; // Hiển thị Số điện thoại
             document.getElementById("profile-card").style.display = "block";
         } else {
             showError(res.message || "Không thể tải hồ sơ.");

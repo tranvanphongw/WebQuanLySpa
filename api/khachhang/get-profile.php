@@ -1,4 +1,5 @@
 <?php
+
 header("Content-Type: application/json");
 require_once __DIR__ . '/../../vendor/autoload.php';
 require_once __DIR__ . '/../../app/config/database.php';
@@ -26,10 +27,15 @@ try {
     $decoded = JWT::decode($token, new Key($secret_key, 'HS256'));
     $user = (array)$decoded->data;
 
+    // Kiểm tra kết nối cơ sở dữ liệu
     $db = new Database();
     $conn = $db->getConnection();
+    if (!$conn) {
+        throw new Exception("Không thể kết nối đến cơ sở dữ liệu.");
+    }
 
-    $stmt = $conn->prepare("SELECT MAKH, TEN, EMAIL FROM KHACHHANG WHERE MAKH = :id");
+    // Cập nhật truy vấn để lấy thêm DCHI và DTHOAI
+    $stmt = $conn->prepare("SELECT MAKH, TEN, EMAIL, DCHI, DTHOAI FROM KHACHHANG WHERE MAKH = :id");
     $stmt->bindParam(':id', $user['MAKH']);
     $stmt->execute();
     $data = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -52,3 +58,4 @@ try {
         "message" => "Token không hợp lệ: " . $e->getMessage()
     ]);
 }
+?>
