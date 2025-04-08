@@ -13,7 +13,7 @@
     <!-- Bắt đầu Navbar -->
 
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="/WebQuanLySpa/">Spa Management</a>
+    <a class="navbar-brand" href="/WebQuanLySpa/">Mayu Japanese Esthetic Spa</a>
     <button 
         class="navbar-toggler" 
         type="button" 

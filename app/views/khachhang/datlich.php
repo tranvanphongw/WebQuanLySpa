@@ -1,3 +1,4 @@
+<?php require_once 'app/views/shares/header.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -119,3 +120,4 @@ $(document).ready(function() {
 </script>
 </body>
 </html>
+<?php require_once 'app/views/shares/footer.php'; ?>

@@ -10,7 +10,7 @@ $database = new Database();
 $conn = $database->getConnection();
 
 // Truy vấn để lấy danh sách nhân viên
-$sql = "SELECT MANV, TEN, CHUYENMON, DIEMDANHGIA, HINHANH FROM NHANVIEN";
+$sql = "SELECT MANV, TEN, CHUYENMON, DIEMDANHGIA, HINHANH, DCHI AS DIACHI, DTHOAI AS SDT FROM NHANVIEN";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 

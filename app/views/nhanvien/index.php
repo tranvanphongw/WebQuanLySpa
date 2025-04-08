@@ -15,7 +15,6 @@
     }
 </style>
 
-
 <div class="container mt-4">
     <h2 class="mb-4">Danh sách nhân viên</h2>
     <div class="row">
@@ -28,7 +27,13 @@
 
                     <div class="card-body">
                         <h5 class="card-title font-weight-bold"><?php echo $nv['TEN']; ?></h5>
-                        <p class="card-text">Chuyên môn: <?php echo $nv['CHUYENMON']; ?></p>
+
+                        <p class="card-text mb-1">
+                            <strong>Địa chỉ:</strong> <?php echo $nv['DIACHI']; ?>
+                        </p>
+                        <p class="card-text mb-1">
+                            <strong>SĐT:</strong> <?php echo $nv['SDT']; ?>
+                        </p>
 
                         <p class="card-text rating-stars mb-0">
                             <?php
