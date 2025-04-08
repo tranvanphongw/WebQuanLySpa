@@ -36,7 +36,10 @@
     <!-- Danh sách dịch vụ -->
     <div class="services mt-5">
         <h2 class="text-center">Dịch vụ của chúng tôi</h2>
-        <div class="row" id="service-list"></div>  <!-- Chỗ này phải có id "service-list" -->
+        <div class="row" id="service-list"></div> <!-- Danh sách dịch vụ sẽ được thêm vào đây -->
+        <div class="text-center">
+            <button id="loadMoreBtn" class="btn btn-primary">Xem thêm</button>
+        </div>
     </div>
 </div>
 
@@ -52,9 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(res => {
             if (res.status === "success") {
                 const serviceList = document.getElementById("service-list");
-                res.data.forEach(dv => {
+
+                res.data.forEach((dv, index) => {
                     const col = document.createElement("div");
-                    col.className = "col-md-4 mb-4";
+                    col.className = "col-md-4 mb-4 service-item"; // Thêm lớp cho mỗi mục dịch vụ
 
                     col.innerHTML = `
                         <div class="card h-100 shadow-sm">
@@ -71,6 +75,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     `;
                     serviceList.appendChild(col);
                 });
+
+                // Nút "Xem thêm" hoạt động
+                document.getElementById("loadMoreBtn").addEventListener("click", () => {
+                    const hiddenServices = document.querySelectorAll(".service-item:nth-child(n+7)"); // Lấy các dịch vụ chưa hiển thị
+                    hiddenServices.forEach(service => {
+                        service.style.display = "block"; // Hiển thị các dịch vụ ẩn
+                    });
+                    document.getElementById("loadMoreBtn").style.display = "none"; // Ẩn nút "Xem thêm" khi không còn dịch vụ để hiển thị
+                });
             } else {
                 document.getElementById("service-list").innerHTML = `<div class="col-12 text-danger">${res.message}</div>`;
             }
@@ -80,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("service-list").innerHTML = `<div class="col-12 text-danger">Không thể tải danh sách dịch vụ. Vui lòng kiểm tra lại kết nối hoặc API.</div>`;
         });
 });
-
 
 </script>
 

@@ -33,4 +33,6 @@ class KhachhangController {
     public function danhGia() {
         require_once 'app/views/khachhang/danhgia.php';
     }
+
+
 }
