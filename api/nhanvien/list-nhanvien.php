@@ -9,14 +9,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/WebQuanLySpa/app/config/database.php'
 $database = new Database();
 $conn = $database->getConnection();
 
-// Truy vấn để lấy danh sách nhân viên
-$sql = "SELECT MANV, TEN, CHUYENMON, DIEMDANHGIA, HINHANH, DCHI AS DIACHI, DTHOAI AS SDT FROM NHANVIEN";
+// ✅ Cập nhật SQL để lấy cả địa chỉ và số điện thoại
+$sql = "SELECT MANV, TEN, DCHI, DTHOAI, CHUYENMON, DIEMDANHGIA, HINHANH FROM NHANVIEN";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
-// Lấy kết quả và trả về dưới dạng JSON
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+// Trả kết quả JSON
 echo json_encode([
     "status" => "success",
     "data" => $results
