@@ -34,19 +34,19 @@
                     <a class="nav-link" href="/WebQuanLySpa">Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/WebQuanLySpa/uu-dai">Ưu đãi</a>
+                    <a class="nav-link" href="/WebQuanLySpa/uudai">Ưu đãi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/WebQuanLySpa/dich-vu">Dịch vụ</a>
+                    <a class="nav-link" href="/WebQuanLySpa/dichvu">Dịch vụ</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/WebQuanLySpa/cong-nghe">Công nghệ</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/WebQuanLySpa/co-so">Cơ sở</a>
+                    <a class="nav-link" href="/WebQuanLySpa/coso">Cơ sở</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/WebQuanLySpa/dat-lich">Đặt lịch</a>
+                    <a class="nav-link" href="/WebQuanLySpa/datlich">Đặt lịch</a>
                 </li>
             </ul>
 
