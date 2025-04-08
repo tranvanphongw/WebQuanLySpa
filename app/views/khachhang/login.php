@@ -54,17 +54,30 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
     })
     .then(res => res.json())
     .then(res => {
+        console.log("API Response:", res); // Debugging line to check the response
+        
         if (res.status === "success") {
-            // Lưu token vào localStorage
-            localStorage.setItem("token", res.token);
+            if (res.data) {
+                console.log("Customer Data:", res.data); // Debugging the customer data
+                
+                // Lưu token vào sessionStorage
+                sessionStorage.setItem("token", res.token);
+                sessionStorage.setItem("customer_id", res.data.MAKH); // Ensure res.data is correct
+                sessionStorage.setItem("customer_name", res.data.TEN);
 
-            // Chuyển sang trang hồ sơ (có thể dùng token để gọi get-profile)
-            window.location.href = "/WebQuanLySpa/khachhang/profile";
+                // Chuyển sang trang chủ
+                window.location.href = "/WebQuanLySpa";  // Chuyển hướng về trang chủ
+            } else {
+                showError("Dữ liệu người dùng không hợp lệ.");
+            }
         } else {
-            showError(res.message);
+            showError(res.message); // Hiển thị thông báo lỗi
         }
     })
-    .catch(() => showError("Đăng nhập thất bại, vui lòng thử lại sau."));
+    .catch(err => {
+        console.error("Error:", err); // Kiểm tra lỗi nếu có
+        showError("Đăng nhập thất bại, vui lòng thử lại sau.");
+    });
 
     function showError(message) {
         const alertBox = document.getElementById("alert-box");

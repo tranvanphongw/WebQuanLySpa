@@ -52,8 +52,20 @@ $payload = [
 
 $jwt = JWT::encode($payload, $secret_key, 'HS256');
 
+// Lưu thông tin vào session
+session_start();
+$_SESSION['customer_id'] = $user["MAKH"];
+$_SESSION['customer_name'] = $user["TEN"];
+$_SESSION['customer_email'] = $user["EMAIL"];
+
+// Trả về thông tin người dùng cùng với token
 echo json_encode([
     "status" => "success",
     "message" => "Đăng nhập thành công!",
-    "token" => $jwt
+    "token" => $jwt,
+    "data" => [
+        "MAKH" => $user["MAKH"],
+        "TEN" => $user["TEN"],
+        "EMAIL" => $user["EMAIL"]
+    ]
 ]);

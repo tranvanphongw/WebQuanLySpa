@@ -34,5 +34,18 @@ class KhachhangController {
         require_once 'app/views/khachhang/danhgia.php';
     }
 
+    // Phương thức đăng xuất
+    public function logout() {
+        session_start();
+        // Xóa tất cả các session
+        session_unset();
+        // Hủy session
+        session_destroy();
+        
+        // Chuyển hướng về trang đăng nhập hoặc trang chủ
+        header("Location: /WebQuanLySpa"); // Bạn có thể thay đổi địa chỉ trang này nếu cần
+        exit();
+    }
+
 
 }
