@@ -10,9 +10,18 @@ $url = filter_var($url, FILTER_SANITIZE_URL); // Loại bỏ các ký tự đặ
 $url = explode('/', $url); // Chia đường dẫn thành mảng
 
 // Mặc định: controller = HomeController, action = index
+
 $controllerName = !empty($url[0]) ? ucfirst($url[0]) . 'Controller' : 'HomeController';
 $action = $url[1] ?? 'index'; // Nếu không có action thì mặc định là 'index'
 $params = array_slice($url, 2); // Các tham số còn lại
+
+// Sửa lại dòng này:
+$controllerName = !empty($url[0])
+    ? str_replace('-', '', ucwords($url[0], '-')) . 'Controller'
+    : 'HomeController';
+
+$action = $url[1] ?? 'index';
+$params = array_slice($url, 2);
 
 // Kiểm tra file controller
 $controllerPath = 'app/controllers/' . $controllerName . '.php';

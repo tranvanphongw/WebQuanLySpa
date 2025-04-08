@@ -1,3 +1,4 @@
+<?php require_once 'app/views/shares/header.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
