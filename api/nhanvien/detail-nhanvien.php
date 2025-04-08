@@ -1,5 +1,5 @@
 <?php
-require_once '../auth.php';
+
 require_once '../../app/config/database.php';
 
 if (!isset($_GET['MANV'])) {

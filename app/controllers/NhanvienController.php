@@ -40,3 +40,4 @@ class NhanvienController {
         require_once 'app/views/nhanvien/filter.php';
     }
 }
+    
