@@ -12,7 +12,7 @@ $manv = $_GET['MANV'];
 $database = new Database();
 $conn = $database->getConnection();
 
-$sql = "SELECT MANV, TEN, DCHI, DTHOAI, CHUYENMON, DIEMDANHGIA, HINHANH FROM NHANVIEN WHERE MANV = :manv";
+$sql = "SELECT MANV, TEN, DCHI, DTHOAI, DIEMDANHGIA, HINHANH FROM NHANVIEN WHERE MANV = :manv";
 $stmt = $conn->prepare($sql);
 $stmt->bindParam(':manv', $manv, PDO::PARAM_INT);
 $stmt->execute();

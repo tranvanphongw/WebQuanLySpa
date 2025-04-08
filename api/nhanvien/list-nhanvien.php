@@ -5,7 +5,7 @@ require_once '../../app/config/database.php';
 $database = new Database();
 $conn = $database->getConnection();
 
-$sql = "SELECT MANV, TEN, DCHI, DTHOAI, CHUYENMON, DIEMDANHGIA, HINHANH FROM NHANVIEN";
+$sql = "SELECT MANV, TEN, DCHI, DTHOAI, DIEMDANHGIA, HINHANH FROM NHANVIEN";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 
