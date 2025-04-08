@@ -1,3 +1,4 @@
+<?php require_once 'app/views/shares/header.php'; ?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -109,6 +110,12 @@ $(document).ready(function() {
                 $('#responseMessage').html(
                     '<div class="alert alert-' + (result.status === 'success' ? 'success' : 'danger') + '">' + result.message + '</div>'
                 );
+                if (result.status === 'success') {//hiển thị thông báo sẽ đếm ngược sau 3 giây
+                    $('#responseMessage').append('<div class="alert alert-info">Chuyển hướng thanh toán sau 3 giây...</div>');
+                    setTimeout(function() {
+                        window.location.href = '/WebQuanLySpa/thanhtoan';  // ✅ Sửa lại URL tương đối để đảm bảo hoạt động
+                    }, 3000); // Chờ 3 giây trước khi chuyển hướng
+                }
             },
             error: function() {
                 $('#responseMessage').html('<div class="alert alert-danger">Có lỗi khi đặt lịch.</div>');

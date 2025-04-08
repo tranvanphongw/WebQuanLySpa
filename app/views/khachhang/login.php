@@ -54,26 +54,26 @@ document.getElementById("login-form").addEventListener("submit", function(e) {
     })
     .then(res => res.json())
     .then(res => {
-        console.log("API Response:", res); // Debugging line to check the response
-        
-        if (res.status === "success") {
-            if (res.data) {
-                console.log("Customer Data:", res.data); // Debugging the customer data
-                
-                // Lưu token vào sessionStorage
-                sessionStorage.setItem("token", res.token);
-                sessionStorage.setItem("customer_id", res.data.MAKH); // Ensure res.data is correct
-                sessionStorage.setItem("customer_name", res.data.TEN);
+    console.log("API Response:", res);
 
-                // Chuyển sang trang chủ
-                window.location.href = "/WebQuanLySpa";  // Chuyển hướng về trang chủ
-            } else {
-                showError("Dữ liệu người dùng không hợp lệ.");
-            }
+    if (res.status === "success") {
+        if (res.data) {
+            console.log("Customer Data:", res.data);
+
+            // ✅ Sửa: dùng localStorage
+            localStorage.setItem("spa_token", res.token);
+            localStorage.setItem("spa_user_id", res.data.MAKH);
+            localStorage.setItem("spa_user_name", res.data.TEN);
+
+            window.location.href = "/WebQuanLySpa"; // Về trang chủ
         } else {
-            showError(res.message); // Hiển thị thông báo lỗi
+            showError("Dữ liệu người dùng không hợp lệ.");
         }
-    })
+    } else {
+        showError(res.message);
+    }
+})
+
     .catch(err => {
         console.error("Error:", err); // Kiểm tra lỗi nếu có
         showError("Đăng nhập thất bại, vui lòng thử lại sau.");
