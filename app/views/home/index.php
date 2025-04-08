@@ -33,14 +33,108 @@
         </a>
     </div>
 
-    <!-- Danh sách dịch vụ -->
-    <div class="services mt-5">
-        <h2 class="text-center">Dịch vụ của chúng tôi</h2>
-        <div class="row" id="service-list"></div>  <!-- Chỗ này phải có id "service-list" -->
+    <style>
+    .spa-services {
+        text-align: center;
+        padding: 40px 20px;
+        background-color: #f9f5ec;
+    }
+
+    .spa-services h2 {
+        font-size: 36px;
+        margin-bottom: 40px;
+        color: #3b1f1f;
+    }
+
+    .service-icons {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    .service-item {
+        max-width: 140px;
+        color: #5c3c3c;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .service-item:hover {
+        color: #a37e58;
+        transform: translateY(-5px);
+    }
+
+    .service-item img {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        margin-bottom: 10px;
+    }
+
+    .service-item span {
+        display: block;
+        font-weight: 500;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .service-description {
+        max-width: 900px;
+        margin: 40px auto 0;
+        color: #5a4c3b;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+</style>
+
+<div class="spa-services">
+    <h2>Dịch vụ của Mayu Japanese Esthetic Spa</h2>
+
+    <div class="service-icons">
+        <div class="service-item" data-title="Làm đẹp toàn diện" data-desc="Dịch vụ làm đẹp toàn diện giúp cải thiện toàn bộ sức khỏe và làn da của bạn thông qua liệu trình đặc biệt.">
+            <img src="public/uploads/icons1.png" alt="Làm đẹp toàn diện">
+            <span>Làm đẹp toàn diện</span>
+        </div>
+        <div class="service-item" data-title="Massage thư giãn" data-desc="Massage giúp thư giãn cơ thể, giảm căng thẳng và cải thiện tuần hoàn máu.">
+            <img src="public/uploads/icons3.png" alt="Massage">
+            <span>MASSAGE THƯ GIÃN</span>
+        </div>
+        <div class="service-item" data-title="Chăm sóc da chuyên sâu" data-desc="Liệu trình chăm sóc da chuyên sâu giúp da bạn trở nên khỏe mạnh, sáng mịn và tươi trẻ hơn.">
+            <img src="public/uploads/icons2.png" alt="Chăm sóc da">
+            <span>Chăm sóc da chuyên sâu</span>
+        </div>
+        <div class="service-item" data-title="Xông hơi" data-desc="Xông hơi giúp giải độc cơ thể, thư giãn tinh thần và tăng cường miễn dịch.">
+            <img src="public/uploads/icons4.png" alt="Xông hơi">
+            <span>XÔNG HƠI</span>
+        </div>
+        <div class="service-item" data-title="Chăm sóc tóc" data-desc="Phục hồi và nuôi dưỡng mái tóc mềm mượt, chắc khỏe nhờ liệu trình chăm sóc chuyên biệt.">
+            <img src="public/uploads/icons5.png" alt="Chăm sóc tóc">
+            <span>CHĂM SÓC TÓC</span>
+        </div>
+    </div>
+
+    <div class="service-description" id="service-description">
     </div>
 </div>
 
 <script>
+    document.querySelectorAll('.service-item').forEach(item => {
+        item.addEventListener('click', () => {
+            const title = item.getAttribute('data-title');
+            const desc = item.getAttribute('data-desc');
+
+            document.getElementById('service-description').innerHTML = `
+                <h4 style="color:#3b1f1f; margin-bottom: 15px;">${title}</h4>
+                <p>${desc}</p>
+            `;
+        });
+    });
+</script>
+
+
+<script>
+    
 document.addEventListener("DOMContentLoaded", function () {
     fetch("http://localhost:8080/WebQuanLySpa/api/dichvu/list-dichvu.php")  // API URL của bạn với cổng 8080
         .then(res => {
