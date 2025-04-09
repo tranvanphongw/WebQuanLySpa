@@ -1,6 +1,6 @@
 <?php require_once 'app/views/shares/header.php'; ?>
 
-<section style="background-color: #fff4ee; padding: 40px 10%; text-align: center;">
+<section style="background-color:rgb(255, 244, 238); padding: 40px 10%; text-align: center;">
     <h1 style="font-size: 36px; color: #332621; margin-bottom: 10px;">Phiếu Ưu Đãi</h1>
 
     <!-- Ảnh to hơn -->

@@ -36,10 +36,12 @@ class DichvuController {
     
 
     // Hiển thị danh sách dịch vụ theo nhóm
-    public function showServicesByCategory($categoryId) {
+    public function showServicesByCategory($categoryId = null) {
         $services = $this->getServicesByCategory($categoryId);
+        $categories = $this->getServiceCategories(); // thêm dòng này
         require_once 'app/views/dichvu/services.php';
     }
+    
 
     // Lấy danh sách dịch vụ theo nhóm từ API
     private function getServicesByCategory($categoryId) {

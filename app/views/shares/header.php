@@ -32,7 +32,7 @@
 
     .navbar-nav .nav-link {
       background-color: transparent;
-      padding: 6px 16px;
+      padding: 8px 16px;
       border-radius: 12px;
       font-weight: 500;
       color: #333 !important;
@@ -42,7 +42,8 @@
     }
 
     .navbar-nav .nav-link:hover,
-    .navbar-nav .nav-link:focus {
+    .navbar-nav .nav-link:focus,
+    .navbar-nav .nav-link.active {
       background-color: #007bff;
       color: #ffffff !important;
       border-color: #007bff;
